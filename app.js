@@ -10,50 +10,73 @@
 
 /*-------------------------------- Constants --------------------------------*/
 const buttons = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator')
 const calculator = document.querySelector('#calculator');
 const display = document.querySelector('.display');
 
 /*-------------------------------- Variables --------------------------------*/
 
-
+let currentInput = '';
 
 /*------------------------ Cached Element References ------------------------*/
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-//   calculator.addEventListener('click', (event) => {
-//     // This log is for testing purposes to verify we're getting the correct value
-//     console.log('you clicked me!');
-//     // Future logic to capture the button's value would go here...
-//   });
 
-let currentInput = '';
 
-  buttons.forEach(button => {
-   button.addEventListener('click', () => {
-    const number = button.innerText;
-    currentInput += number;
-    display.innerText = currentInput;
-   }) 
-  }) 
 
-// calculator.addEventListener('click', (event) => {
-//   // This log is for testing purposes to verify we're getting the correct value
-//   // You have to click a button to see this log
-//   console.log(event.target.innerText);
+calculator.addEventListener('click', (event) => {
 
-  // Example
-  if (event.target.classList.contains('number')) {
-    return 'number';
-  }
+  console.log(event.target.innerText);
+})
 
-  // Example
-  if (event.target.innerText === '*') {
-    // Do something with this operator
-  }
-});
 
+
+
+//   // Example
+//   if (event.target.classList.contains('number')) {
+//     return 'number';
+//   }
+  // // Example
+  // else if (event.target.innerText === '*') {
+  //   return number * number;
+  // }
+  // else if (event.target.innerText === "/") {
+  //   return number / number;
+  // }
+  // else if (event.target.innerText === "+") {
+  //   return number + number;
+  // }
+// })
 
 /*-------------------------------- Functions --------------------------------*/
-const titleElement = document.querySelector('title');
-console.log(titleElement);
+
+function numberDisplay (number) {
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const number = button.innerText;
+        if (currentInput += number) {
+          display.innerText = currentInput
+        } else {
+          clear()
+        }
+    }) 
+  }) 
+};
+
+
+
+function calculate () {
+  operators.forEach((operator) => {
+//    if button.innerText = "+" {
+//      return current input + 
+    })
+  
+}
+
+
+
+
+function clear() {
+  currentInput = '';
+}
