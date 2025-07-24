@@ -9,33 +9,126 @@
 // As a user, I want to be able to clear all operations and start from 0.
 
 /*-------------------------------- Constants --------------------------------*/
-const buttons = document.querySelectorAll('.number');
-const operators = document.querySelectorAll('.operator')
-const calculator = document.querySelector('#calculator');
-const display = document.querySelector('.display');
+
 
 /*-------------------------------- Variables --------------------------------*/
 
 let currentInput = '';
+let numA = null;
+let numB = null
+let operator = null;
 
 /*------------------------ Cached Element References ------------------------*/
 
+const buttons = document.querySelectorAll('.button');
+//const operators = document.querySelectorAll('.operator')
+const calculator = document.querySelector('#calculator');
+const display = document.querySelector('.display');
+
+// buttons.addEventListener('click', () => {
+//   console.log('you clicked me!')
+// })
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-
-
 calculator.addEventListener('click', (event) => {
+  const input = event.target;
+  
+  if (input.classList.contains('number')) {
 
-  console.log(event.target.innerText);
+    currentInput += input.innerText;
+    display.textContent = currentInput;
+  }
+
+  if (input.classList.contains('operator')) {
+    const clickedOperator = input.innerText;
+  }
+    numA = Number(currentInput);
+    currentInput = '';
+
+    if (operator === 'C') {
+      render();
+      return;
+    }
+
+    if ()
+
+  if (input.classList.contains('equals')) {
+    numB = Number(currentInput)
+    let result = 0;
+
+    if (operator === '+') {
+      result = numA + numB;
+    } else if (operator === '-') {
+      result = numA - numB;
+    } else if (operator === '*') {
+      result = numA * numB;
+    } else if (operator === '/') {
+      result = numA / numB;
+    }
+
+    display.textContent = result;
+    currentInput = result.toString();
+    numA = null;
+    numB = null;
+    operator = null;
+  }
 })
+ // if (operator === "=") {
+  //   let numB = Number(currentInput);
+  //   let result = 0; }
+/*-------------------------------- Functions --------------------------------*/
 
+function render() { //clears everything/ reset
+  currentInput = " ";
+  numA = null;
+  numB = null
+  operator = null;
+  display.textContent=" ";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// button.addEventListener('click', (event) => {
+//   const number = button.innerText;
+//   (currentInput += number) 
+//   display.innerText = currentInput
+// })
+
+
+
+//   console.log(event.target.innerText);
+// })
 
 
 
 //   // Example
-//   if (event.target.classList.contains('number')) {
-//     return 'number';
+//   if event.target.innerText contains a number
+//     return the number
 //   }
   // // Example
   // else if (event.target.innerText === '*') {
@@ -47,36 +140,33 @@ calculator.addEventListener('click', (event) => {
   // else if (event.target.innerText === "+") {
   //   return number + number;
   // }
+  // the last operator is 'C' which is a render button back to reset/0
 // })
 
-/*-------------------------------- Functions --------------------------------*/
 
-function numberDisplay (number) {
-  buttons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      const number = button.innerText;
-        if (currentInput += number) {
-          display.innerText = currentInput
-        } else {
-          clear()
-        }
-    }) 
-  }) 
-};
+
+//function numberDisplay (number) {
+//   buttons.forEach((button) => {
+    
+//         // } else {
+//         //   clear()
+//         // }
+//     })
+//   }
 
 
 
-function calculate () {
-  operators.forEach((operator) => {
-//    if button.innerText = "+" {
-//      return current input + 
-    })
+// function calculate () {
+//   operators.forEach((operator) => {
+// //    if button.innerText = "+" {
+// //      return current input + 
+//     })
   
-}
+// }
 
 
 
 
-function clear() {
-  currentInput = '';
-}
+// function clear() {
+//   currentInput = '';
+// }
