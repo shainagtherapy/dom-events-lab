@@ -20,7 +20,7 @@ let operator = null;
 
 /*------------------------ Cached Element References ------------------------*/
 
-const buttons = document.querySelectorAll('.button');
+//const buttons = document.querySelectorAll('.button');
 //const operators = document.querySelectorAll('.operator')
 const calculator = document.querySelector('#calculator');
 const display = document.querySelector('.display');
@@ -35,43 +35,46 @@ calculator.addEventListener('click', (event) => {
   const input = event.target;
   
   if (input.classList.contains('number')) {
-
     currentInput += input.innerText;
     display.textContent = currentInput;
   }
 
   if (input.classList.contains('operator')) {
-    const clickedOperator = input.innerText;
-  }
-    numA = Number(currentInput);
-    currentInput = '';
+    const clicked = input.innerText;
 
-    if (operator === 'C') {
+    if (clicked === 'C') {
       render();
       return;
     }
 
-    if ()
+    if (!operator && currentInput !== '') {
+      numA = Number(currentInput)
+      operator = clicked;
+      currentInput = ''; // no visible input for operator
+    }
+  }
 
   if (input.classList.contains('equals')) {
-    numB = Number(currentInput)
-    let result = 0;
+    if (operator && currentInput !== '') {
+      numB = Number(currentInput)
+      let result = 0;
 
-    if (operator === '+') {
-      result = numA + numB;
-    } else if (operator === '-') {
-      result = numA - numB;
-    } else if (operator === '*') {
-      result = numA * numB;
-    } else if (operator === '/') {
-      result = numA / numB;
+      if (operator === '+') {
+        result = numA + numB;
+      } else if (operator === '-') {
+        result = numA - numB;
+      } else if (operator === '*') {
+        result = numA * numB;
+      } else if (operator === '/') {
+        result = numA / numB;
+      }
+
+      display.textContent = result;
+      currentInput = result.toString();
+      numA = null;
+      numB = null;
+      operator = null;
     }
-
-    display.textContent = result;
-    currentInput = result.toString();
-    numA = null;
-    numB = null;
-    operator = null;
   }
 })
  // if (operator === "=") {
@@ -80,9 +83,9 @@ calculator.addEventListener('click', (event) => {
 /*-------------------------------- Functions --------------------------------*/
 
 function render() { //clears everything/ reset
-  currentInput = " ";
+  currentInput = '';
   numA = null;
-  numB = null
+  numB = null;
   operator = null;
   display.textContent=" ";
 }
